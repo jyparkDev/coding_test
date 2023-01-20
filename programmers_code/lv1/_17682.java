@@ -2,7 +2,7 @@ package programmers.lv1;
 
 import java.util.Scanner;
 
-public class DartGame {
+public class _17682 {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         String dartResult = s.nextLine();
