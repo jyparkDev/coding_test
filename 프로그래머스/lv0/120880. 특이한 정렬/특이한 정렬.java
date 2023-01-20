@@ -1,12 +1,7 @@
-package programmers.lv1;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
-public class _17682 {
-
-    public static int[] solution(int[] numlist , int n) {
+class Solution {
+    public int[] solution(int[] numlist, int n) {
         ArrayList<Integer> list = new ArrayList<>(); // sample list
         ArrayList<Integer> answer_list = new ArrayList<>(); // 기준 정렬 된 list
         boolean check = false; // 기준에 n 여부 체크
@@ -60,12 +55,5 @@ public class _17682 {
         }
         if (!check) answer_list.remove(0);
         return answer_list.stream().mapToInt(i -> i).toArray();
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Main.main");
-        int result[] = solution(new int[]{4, 5, 3, 6, 2, 1}, 4);
-        System.out.println("result = " + Arrays.toString(result));
-//        System.out.println("result = " + result);
     }
 }
