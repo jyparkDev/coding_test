@@ -1,25 +1,7 @@
-class Solution {
-    public int solution(String dartResult) {
-       String[] scoreStr = divideScore(dartResult);
-       int[] score = new int[3];
-       for(int i = 0 ; i < scoreStr.length;i++){
-           String[] addScoreStr = divideAddScore(scoreStr[i]);
-           score[i] = Integer.parseInt(addScoreStr[0]);
-           if(addScoreStr[1].equals("S")){
-               score[i] *= 1;
-           }else if(addScoreStr[1].equals("D")){
-               score[i] = score[i] * score[i];
-           }else{
-               score[i] = score[i] * score[i] * score[i];
-           }
-
-<<<<<<<< HEAD:programmers_code/lv1/_17682.java
 import java.util.Scanner;
 
-public class _17682 {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        String dartResult = s.nextLine();
+class Solution {
+    public int solution(String dartResult) {
         String[] scoreStr = divideScore(dartResult);
         int[] score = new int[3];
         for(int i = 0 ; i < scoreStr.length;i++){
@@ -40,29 +22,13 @@ public class _17682 {
                     }
                     score[i] *=  2;
                 }else if(addScoreStr[2].equals("#")){
-                    if(i > 0){
-                        score[i-1] *= -1;
-                    }
                     score[i] *= -1;
                 }
             }
         }
-        System.out.println(score[0]+score[1]+score[2]);
-========
-           if(addScoreStr[2] != null){
-               if(addScoreStr[2].equals("*")){
-                   if(i > 0 ){
-                       score[i-1] *=2;
-                   }
-                   score[i] *=  2;
-               }else if(addScoreStr[2].equals("#")){
-                   score[i] *= -1;
-               }
-           }
-       }
-       return score[0]+score[1]+score[2];
->>>>>>>> 96fcdb8bbf6f17855cc72562a6dd6f443373383a:프로그래머스/lv1/17682. ［1차］ 다트 게임/［1차］ 다트 게임.java
+        return score[0]+score[1]+score[2];
     }
+
     static String[] divideAddScore(String scoreStr){
         StringBuilder sb = new StringBuilder();
         String[] tmp = new String[3];
@@ -80,6 +46,7 @@ public class _17682 {
         }
         return tmp;
     }
+
     static String[] divideScore(String dartResult){
         StringBuilder sb = new StringBuilder();
         String tmp[] = new String[3];
@@ -103,5 +70,11 @@ public class _17682 {
             }
         }
         return tmp;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int result = sol.solution("1S*2T*3S");
+        System.out.println("result = " + result);
     }
 }
