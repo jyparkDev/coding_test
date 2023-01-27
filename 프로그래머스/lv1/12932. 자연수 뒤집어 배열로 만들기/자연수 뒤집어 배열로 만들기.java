@@ -1,11 +1,9 @@
-import java.util.*;
 class Solution {
     public int[] solution(long n) {
-        String str = String.valueOf(n);
-        int[] answer = new int[str.length()];
-        for(int i = answer.length-1,j=0 ; i >= 0 ;i--,j++)
-            answer[j] = str.charAt(i) - '0';
+        char[] ch = String.valueOf(n).toCharArray();
+        int[] answer = new int[ch.length];
+        for(int i = ch.length-1,k=0 ; i >=0;i--)
+            answer[k++] = ch[i] - '0';
         return answer;
-
     }
 }
