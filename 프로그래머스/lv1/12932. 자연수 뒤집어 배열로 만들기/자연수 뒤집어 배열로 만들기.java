@@ -1,10 +1,11 @@
+import java.util.*;
 class Solution {
     public int[] solution(long n) {
-        String sb = new StringBuilder(String.valueOf(n)).reverse().toString();
-        int[] answer = new int[sb.length()];
-        for(int i = 0 ; i < answer.length ;i++){
-            answer[i] = sb.charAt(i) - '0';
-        }
+        String str = String.valueOf(n);
+        int[] answer = new int[str.length()];
+        for(int i = answer.length-1,j=0 ; i >= 0 ;i--,j++)
+            answer[j] = str.charAt(i) - '0';
         return answer;
+
     }
 }
