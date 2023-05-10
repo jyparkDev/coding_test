@@ -1,9 +1,11 @@
+import sys
+
 n = int(input().rstrip())
 rank = 1
 ll = list()
 tip = 0
 for _ in range(n):
-    m = int(input().rstrip())
+    m = int(sys.stdin.readline().rstrip())
     ll.append(m)
 
 ll.sort(reverse=True)
