@@ -10,8 +10,10 @@ ll.sort(reverse=True)
 
 for m in ll:
     tmp = m - (rank - 1)
-    if tmp >= 0:
-        tip += tmp
+    if tmp < 0:
+        break
+    tip += tmp
     rank += 1
 
 print(tip)
+
