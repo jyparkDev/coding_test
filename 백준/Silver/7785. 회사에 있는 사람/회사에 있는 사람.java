@@ -21,20 +21,21 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        Map<String,String> map = new HashMap<>();
-        while (N-- > 0){
+        Set<String> memberSet = new HashSet<>();
+        while (N-- > 0) {
             String[] in = br.readLine().split(" ");
-            map.put(in[0],in[1]);
+            if (in[1].equals("leave")) {
+                memberSet.remove(in[0]);
+                continue;
+            }
+            memberSet.add(in[0]);
         }
-        ArrayList<Member> members = new ArrayList<>();
 
-        map.forEach((n,s)->{
-            if(s.equals("enter")) members.add(new Member(n));
-        });
-
-        Collections.sort(members);
-        for (Member m : members) {
-            System.out.println(m.name);
-        }
+        memberSet.stream().sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        }).forEach(s -> System.out.println(s));
     }
 }
