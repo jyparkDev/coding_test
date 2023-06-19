@@ -1,34 +1,88 @@
 import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] st = br.readLine().split(" ");
-        int N = Integer.parseInt(st[0]);
-        int M = Integer.parseInt(st[1]);
+    static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
 
-        int[][] board = new int[N + 1][N + 1];
 
-        for(int i = 1 ; i < board.length ; i++){
-            String[] str = br.readLine().split(" ");
-            for (int j = 1 ; j < board[i].length ; j++)
-                board[i][j] = board[i][j - 1] + Integer.parseInt(str[j - 1]);
-        }
+    static int N, M;
+    static int[][] S;
 
-        while (M-- > 0){
-            String[] str = br.readLine().split(" ");
-            int x1 = Integer.parseInt(str[0]);
-            int y1 = Integer.parseInt(str[1]);
-            int x2 = Integer.parseInt(str[2]);
-            int y2 = Integer.parseInt(str[3]);
-            int sum = 0;
-            for(int i = x1 ; i <= x2 ; i++){
-                sum += board[i][y2] - board[i][y1 - 1];
+    public static void input() {
+        N = scan.nextInt();
+        M = scan.nextInt();
+        S = new int[N + 1][N + 1];
+        for(int i = 1 ; i <= N ; i++){
+            for(int j = 1 ; j <= N ; j++){
+                int num = scan.nextInt();
+                S[i][j] = S[i-1][j] + S[i][j - 1] - S[i - 1][j - 1] + num;
             }
-            bw.write(sum + "\n");
         }
-        bw.flush();
-        bw.close();
+    }
+    public static void pro() {
+
+        while(M-- > 0){
+            int x1 = scan.nextInt();
+            int y1 = scan.nextInt();
+            int x2 = scan.nextInt();
+            int y2 = scan.nextInt();
+            int result = S[x2][y2] - S[x2][y1 - 1] - S[x1 - 1][y2] + S[x1 - 1][y1  - 1];
+            sb.append(result);
+            sb.append("\n");
+        }
+    }
+
+    public static void main(String[] args) {
+        input();
+        pro();
+        System.out.println(sb.toString());
+    }
+
+    static class FastReader{
+        BufferedReader br ;
+        StringTokenizer st;
+
+        public FastReader(){
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        public FastReader(String s) throws FileNotFoundException {
+            br = new BufferedReader(new FileReader(new File(s)));
+        }
+
+        String next(){
+            while(st == null || !st.hasMoreElements()){
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt(){
+            return Integer.parseInt(next());
+        }
+
+        long nextLong(){
+            return Long.parseLong(next());
+        }
+
+        double nextDouble(){
+            return Double.parseDouble(next());
+        }
+
+        String nextLine(){
+            String str = "";
+
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return str;
+        }
     }
 }
