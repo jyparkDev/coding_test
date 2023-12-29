@@ -1,23 +1,23 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
-class Main {
+public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         int orderCount = 1000;
-        ArrayList<Double> weightPerPrice = new ArrayList();
-        weightPerPrice.add(getPrice());
+        double weightPerPrice = getPrice();
 
         int N = sc.nextInt();
 
         for (int i = 1 ; i <= N ; i++){
-            weightPerPrice.add(getPrice());
+            double target = getPrice();
+            if (target < weightPerPrice){
+                weightPerPrice = target;
+            }
         }
 
-        double[] priceArr = weightPerPrice.stream().sorted().mapToDouble(x -> x).toArray();
-        System.out.printf("%.2f",orderCount * priceArr[0]);
+        System.out.printf("%.2f",orderCount * weightPerPrice);
 
     }
 
