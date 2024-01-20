@@ -1,8 +1,6 @@
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -11,19 +9,12 @@ public class Main {
         int maxStickerNum = 0;
         int currentStickerNum = 0;
         String[] M = br.readLine().split(" ");
-        Set<String> checkSet = new HashSet<>();
+        boolean[] checkArr = new boolean[N + 1];
         for (int i = 0 ; i < N; i++){
-            String number = M[i];
-            if (!checkSet.contains(number)){
-                checkSet.add(number);
-                currentStickerNum++;
-            }else {
-                checkSet.remove(number);
-                currentStickerNum--;
-            }
-            if(currentStickerNum > maxStickerNum){
-                maxStickerNum = currentStickerNum;
-            }
+            int choiceNum = Integer.parseInt(M[i]);
+            checkArr[choiceNum] = !checkArr[choiceNum];
+            currentStickerNum = checkArr[choiceNum] ? currentStickerNum + 1 :  currentStickerNum - 1;
+            maxStickerNum = Math.max(currentStickerNum, maxStickerNum);
         }
         System.out.println(maxStickerNum);
     }
